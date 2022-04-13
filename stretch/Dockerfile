@@ -1,8 +1,6 @@
 FROM debian:stretch
 
-RUN dpkg --add-architecture armhf
 RUN apt-get update && apt-get install -y --no-install-recommends \
-  crossbuild-essential-armhf \
   git \
   pkg-config \
   fakeroot \
@@ -10,10 +8,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   sudo \
   apt-transport-https \
   ca-certificates \
-  libx11-dev:armhf \
-  libx11-xcb-dev:armhf \
-  libxkbfile-dev:armhf \
-  libsecret-1-dev:armhf \
+  libx11-dev \
+  libx11-xcb-dev \
+  libxkbfile-dev \
+  libsecret-1-dev \
   curl \
   gnupg \
   unzip \
@@ -51,12 +49,3 @@ RUN apt-get update && apt-get install -y yarn
 # Required for github action https://github.com/actions/checkout/issues/126#issuecomment-570288731
 RUN echo "deb http://deb.debian.org/debian stretch-backports main" | sudo tee -a /etc/apt/sources.list.d/backports.list
 RUN apt-get update && apt-get install -y -t stretch-backports git git-man
-
-ENV AS=/usr/bin/arm-linux-gnueabihf-as \
-  AR=/usr/bin/arm-linux-gnueabihf-ar \
-  CC=/usr/bin/arm-linux-gnueabihf-gcc \
-  CPP=/usr/bin/arm-linux-gnueabihf-cpp \
-  CXX=/usr/bin/arm-linux-gnueabihf-g++ \
-  LD=/usr/bin/arm-linux-gnueabihf-ld \
-  FC=/usr/bin/arm-linux-gnueabihf-gfortran \
-  PKG_CONFIG_PATH=/usr/lib/arm-linux-gnueabihf/pkgconfig

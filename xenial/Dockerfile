@@ -1,11 +1,11 @@
-FROM multiarch/ubuntu-core:armhf-xenial
+FROM ubuntu:xenial
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
   build-essential \
-  gcc-multilib \
-  g++-multilib \
+  # gcc-multilib \
+  # g++-multilib \
   git \
   # dpkg-dev \
   zip \
@@ -38,9 +38,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   unzip
 
 # Node
-RUN curl -fsSLO --compressed https://nodejs.org/dist/v10.11.0/node-v10.11.0-linux-armv6l.tar.xz
-RUN tar --strip-components=1 -xJf node-v10.11.0-linux-armv6l.tar.xz -C /usr/local --no-same-owner
-RUN rm node-v10.11.0-linux-armv6l.tar.xz
+RUN curl -fsSLO --compressed https://nodejs.org/dist/v10.11.0/node-v10.11.0-linux-$(dpkg --print-architecture).tar.xz
+RUN tar --strip-components=1 -xJf node-v10.11.0-linux-$(dpkg --print-architecture).tar.xz -C /usr/local --no-same-owner
+RUN rm node-v10.11.0-linux-$(dpkg --print-architecture).tar.xz
 
 # Yarn
 RUN curl -fsSLO --compressed https://yarnpkg.com/downloads/1.10.1/yarn-v1.10.1.tar.gz
