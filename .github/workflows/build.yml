@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [alpine, stretch, buster, centos7-devtoolset8, snapcraft, xenial]
+        arch: [alpine, stretch, buster, centos7-devtoolset8, snapcraft]
 
     steps:
       - uses: actions/checkout@v2
