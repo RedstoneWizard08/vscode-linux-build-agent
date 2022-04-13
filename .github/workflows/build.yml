@@ -34,3 +34,4 @@ jobs:
           tags: ghcr.io/redstonewizard08/vscode-linux-build-agent:${{ matrix.arch }}
           push: true
           platforms: linux/arm64,linux/amd64
+
